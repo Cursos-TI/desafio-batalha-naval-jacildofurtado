@@ -178,8 +178,8 @@ int main() {
 
             for (int j = 0; j < 3; j++) {
 
-                // Verifica se a soma da linha inicial + 1 com a colunaInicial - j é igual a 9, então marca a posição, senão continua 0.
-                if ((linhaInicial4 + i) + (colunaInicial4 - j) == 9) {
+                // Verifica se a soma da linhaInicial4 + i com a colunaInicial4 - j é igual a soma da linhaInicial4 com a colunaInicial4, então marca a posição, senão continua 0.
+                if ((linhaInicial4 + i) + (colunaInicial4 - j) == linhaInicial4 + colunaInicial4) {
                     tabuleiro[linhaInicial4 + i][colunaInicial4 - j] = navio4[i];  
                 } else {
                     tabuleiro[linhaInicial4 + i][colunaInicial4 - j] = 0;
