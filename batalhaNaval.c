@@ -23,6 +23,8 @@ int main() {
     // Definição de vetores com comprimento 3 para representar os navios.
     int navio1[3] = {3, 3, 3};
     int navio2[3] = {3, 3, 3};
+    int navio3[3] = {3, 3, 3};
+    int navio4[3] = {3, 3, 3};
 
     // Coordenadas navio 1 - Horizontal.
     int linha1 = 9;
@@ -33,6 +35,16 @@ int main() {
     int coluna2 = 9;
     int linhaInicial2 = 7;
     int podePosicionar2 = 1;
+
+    // Coordenadas do navio 3 - Diagonal
+    int linhaInicial3 = 0;
+    int colunaInicial3 = 0;
+    int podePosicionar3 = 1;
+
+    // Coordenadas do navio 4 - Diagonal
+    int linhaInicial4 = 0;
+    int colunaInicial4 = 9;
+    int podePosicionar4 = 1;
 
     // Verifica se o navio 1 cabe no tabuleiro.
     if (colunaInicial1 + 3 <= 10 && linha1 <= 10) { // Verifica se o navio cabe na horizontal sem ultrapassar as bordas do tabuleiro.
@@ -98,10 +110,95 @@ int main() {
 
     }
 
+    // Verifica se o navio 3 cabe no tabuleiro.
+    if (linhaInicial3 + 3 <= 10 && colunaInicial3 + 3 <= 10) { // Verifica se o navio cabe partindo da diagonal superior esquerda sem ultrapassar as bordas do tabuleiro.
+
+        for (int i = 0; i < 3; i++) { // Verifica se as posições onde o navio será colocado já estão ocupadas.
+            for (int j = 0; j < 3; j++) {
+                if(tabuleiro[linhaInicial3 + i][colunaInicial3 + j] != 0){
+                    podePosicionar3 = 0;
+                    break;
+                }
+            }
+        }
+
+    } else {
+
+        podePosicionar3 = 0;
+
+    }
+
+    
+    // Posionamento do navio 3 se ele puder ser posicionado
+    if (podePosicionar3 == 1) {
+
+        for (int i = 0; i < 3; i++) {
+
+            for (int j = 0; j < 3; j++) {
+
+                // Verifica se o índice da linha + i é igual o da coluna + j, se for então marca a posição, senão continua 0.
+                if (linhaInicial3 + i == colunaInicial3 + j) {
+                    tabuleiro[linhaInicial3 + i][colunaInicial3 + j] = navio3[i];
+                } else {
+                    tabuleiro[linhaInicial3 + i][colunaInicial3 + j] = 0;
+                }
+
+            }
+
+        }
+
+    } else {
+
+        printf("Erro: navio 3 fora dos limites ou sobreposição!\n");
+
+    }
+
+    // Verifica se o navio 4 cabe no tabuleiro.
+    if (linhaInicial4 + 3 <= 10 && (colunaInicial4 <= 10 && colunaInicial4 - 3 >= 0)) { // Verifica se o navio cabe partindo da diagonal superior direita sem ultrapassar as bordas do tabuleiro.
+
+        for (int i = 0; i < 3; i++) { // Verifica se as posições onde o navio será colocado já estão ocupadas.
+            for (int j = 0; j < 3; j++) {
+                if(tabuleiro[linhaInicial4 + i][colunaInicial4 - j] != 0){
+                    podePosicionar4 = 0;
+                    break;
+                }
+            }
+        }
+
+    } else {
+
+        podePosicionar4 = 0;
+
+    }
+
+    // Posionamento do navio 4 se ele puder ser posicionado
+    if (podePosicionar4 == 1) {
+
+        for (int i = 0; i < 3; i++) {
+
+            for (int j = 0; j < 3; j++) {
+
+                // Verifica se a soma da linha inicial + 1 com a colunaInicial - j é igual a 9, então marca a posição, senão continua 0.
+                if ((linhaInicial4 + i) + (colunaInicial4 - j) == 9) {
+                    tabuleiro[linhaInicial4 + i][colunaInicial4 - j] = navio4[i];  
+                } else {
+                    tabuleiro[linhaInicial4 + i][colunaInicial4 - j] = 0;
+                }
+
+            }
+
+        }
+
+    } else {
+
+        printf("Erro: navio 4 fora dos limites ou sobreposição!\n");
+
+    }
+
 
     // 3. Exibição do tabuleiro do jogo
 
-    if (podePosicionar1 == 1 && podePosicionar2 == 1) {
+    if (podePosicionar1 == 1 && podePosicionar2 == 1 && podePosicionar3 == 1 && podePosicionar4 == 1) {
 
         printf("***** TABULEIRO BATALHA NAVAL *****\n");
 
