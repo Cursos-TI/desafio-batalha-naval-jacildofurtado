@@ -213,7 +213,7 @@ int main() {
 
     }
 
-    // coodenadas das habilidades
+    // coodenadas das habilidades (a coordenada inicial da habilidade é o seu centro).
 
     // coordenada inicial do cone
     int coneLinhaOrigem = 1;
@@ -226,18 +226,33 @@ int main() {
     int habilidadePodePosicionar2 = 1;
 
     // coordenada inicial do octaedro
-    int octaedroLinhaOrigem = 7;
+    int octaedroLinhaOrigem = 8;
     int octaedroColunaOrigem = 2;
     int habilidadePodePosicionar3 = 1;
 
     // verifica se o cone está dentro do limite do tabuleiro
-    if ((coneLinhaOrigem + 1 < 10 && coneLinhaOrigem - 1 >= 0) && (coneColunaOrigem + 2 < 10 && coneColunaOrigem - 2 >= 0) {
+    if ((coneLinhaOrigem + 1 < 10 && coneLinhaOrigem - 1 >= 0) && (coneColunaOrigem + 2 < 10 && coneColunaOrigem - 2 >= 0)) {
+        // este loop imprime a habilidade de cone no tabuleiro
+        for (int i = 0; i < 5; i++) {
 
-        for (int i = 0; i < 5; i+=) {
-
-            for (int j = 0; j < 5; j ++) {
+            for (int j = 0; j < 5; j++) {
+                // origem da habilidade (centro)
                 if (coneLinhaOrigem == i && coneColunaOrigem == j){
-                    tabuleiro[i][j] = cone[i][j];
+                    tabuleiro[coneLinhaOrigem][coneColunaOrigem] = cone[i][j];
+                    tabuleiro[coneLinhaOrigem][coneColunaOrigem - 1] = cone[i][j];
+                    tabuleiro[coneLinhaOrigem][coneColunaOrigem + 1] = cone[i][j];
+                }
+                // topo do cone
+                if (coneLinhaOrigem - 1 == i && coneColunaOrigem == j) {
+                    tabuleiro[coneLinhaOrigem - 1][coneColunaOrigem] = cone[i][j];
+                }
+                // base do cone
+                if (coneLinhaOrigem + 1 == i && coneColunaOrigem == j) {
+                    tabuleiro[coneLinhaOrigem + 1][coneColunaOrigem] = cone[i][j];
+                    tabuleiro[coneLinhaOrigem + 1][coneColunaOrigem - 1] = cone[i][j];
+                    tabuleiro[coneLinhaOrigem + 1][coneColunaOrigem - 2] = cone[i][j];
+                    tabuleiro[coneLinhaOrigem + 1][coneColunaOrigem + 1] = cone[i][j];
+                    tabuleiro[coneLinhaOrigem + 1][coneColunaOrigem + 2] = cone[i][j];                     
                 }
             }
 
@@ -247,105 +262,63 @@ int main() {
         printf("Habilidade de cone fora dos limites do tabuleiro!\n");
     }
 
-    /*
-    // esse loop ilustra o cone na respectiva matriz da habilidade
-    for (int i = 0; i < 5; i++) {
+    // verifica se a cruz está dentro do limite do tabuleiro
+    if ((cruzLinhaOrigem + 1 < 10 && cruzLinhaOrigem - 1 >= 0) && (cruzColunaOrigem + 2 < 10 && cruzColunaOrigem - 2 >= 0)) {
+        // este loop imprime a habilidade de cruz no tabuleiro
+        for (int i = 0; i < 5; i++) {
 
-        for (int j = 0; j < 5; j++) {
-            if (i == 1 && j == 2) {
-                cone[i][j] = 5;
+            for (int j = 0; j < 5; j++) {
+                // origem da habilidade (centro)
+                if (cruzLinhaOrigem == cruzLinhaOrigem + i && cruzColunaOrigem == cruzColunaOrigem + j){
+                    tabuleiro[cruzLinhaOrigem][cruzColunaOrigem - 2] = cruz[i][j];
+                    tabuleiro[cruzLinhaOrigem][cruzColunaOrigem - 1] = cruz[i][j];
+                    tabuleiro[cruzLinhaOrigem][cruzColunaOrigem] = cruz[i][j];
+                    tabuleiro[cruzLinhaOrigem][cruzColunaOrigem + 1] = cruz[i][j];
+                    tabuleiro[cruzLinhaOrigem][cruzColunaOrigem + 2] = cruz[i][j];
+                }
+                // topo da cruz
+                if (cruzLinhaOrigem - 1 == cruzLinhaOrigem - i && cruzColunaOrigem == cruzColunaOrigem + j) {
+                    tabuleiro[cruzLinhaOrigem - 1][cruzColunaOrigem] = cruz[i][j];
+                }
+                // base da cruz
+                if (cruzLinhaOrigem + 1 == cruzLinhaOrigem + i && cruzColunaOrigem == cruzColunaOrigem + j) {
+                    tabuleiro[cruzLinhaOrigem + 1][cruzColunaOrigem] = cruz[i][j];
+                }
             }
 
-            if (i == 2 && (j > 0 && j < 4)) {
-                cone[i][j] = 5;
-            }
-
-            if (i == 3 && (j >= 0 && j <= 4)) {
-                cone[i][j] = 5;
-            }
         }
 
+    } else {
+        printf("Habilidade de cruz fora dos limites do tabuleiro!\n");
     }
 
-    // imprime o cone
-    for (int i = 0; i < 5; i++) {
+    // verifica se o octaedro está dentro do limite do tabuleiro
+    if ((cruzLinhaOrigem + 1 < 10 && cruzLinhaOrigem - 1 >= 0) && (cruzColunaOrigem + 2 < 10 && cruzColunaOrigem - 2 >= 0)) {
+        // este loop imprime a habilidade de octaedro no tabuleiro
+        for (int i = 0; i < 5; i++) {
 
-        for (int j = 0; j < 5; j++) {
-            printf("%d ", cone[i][j]);
+            for (int j = 0; j < 5; j++) {
+                // origem da habilidade (centro)
+                if (octaedroLinhaOrigem == octaedroLinhaOrigem + i && octaedroColunaOrigem == octaedroColunaOrigem + j) {
+                    tabuleiro[octaedroLinhaOrigem][octaedroColunaOrigem - 1] = octaedro[i][j];
+                    tabuleiro[octaedroLinhaOrigem][octaedroColunaOrigem] = octaedro[i][j];
+                    tabuleiro[octaedroLinhaOrigem][octaedroColunaOrigem + 1] = octaedro[i][j];
+                }
+                // top do octaedro
+                if (octaedroLinhaOrigem - 1 == octaedroLinhaOrigem - i && octaedroColunaOrigem == octaedroColunaOrigem + j) {
+                    tabuleiro[octaedroLinhaOrigem - 1][octaedroColunaOrigem] = octaedro[i][j];
+                }
+                // base do octaedro
+                if (octaedroLinhaOrigem + 1 == octaedroLinhaOrigem + i && octaedroColunaOrigem == octaedroColunaOrigem + j) {
+                    tabuleiro[octaedroLinhaOrigem + 1][octaedroColunaOrigem] = octaedro[i][j];
+                }
+            }
+
         }
 
-        printf("\n");
-
+    } else {
+        printf("Habilidade de octaedro fora dos limites do tabuleiro!\n");
     }
-
-    printf("\n");
-
-
-    // gera a cruz na matriz
-    for (int i = 0; i < 5; i++) {
-
-        for (int j = 0; j < 5; j++) {
-            if (i == 1 && j == 2) {
-                cruz[i][j] = 5;
-            }
-
-            if (i == 2 && (j >= 0 && j <= 4)) {
-                cruz[i][j] = 5;
-            }
-            
-            if (i == 3 && j == 2) {
-                cruz[i][j] = 5;
-            }
-        }
-
-    }
-
-
-    // imprime a cruz
-    for (int i = 0; i < 5; i++) {
-
-        for (int j = 0; j < 5; j++) {
-            printf("%d ", cruz[i][j]);
-        }
-
-        printf("\n");
-
-    }
-
-    printf("\n");
-
-    // gera o octaedro  na matriz
-    for (int i = 0; i < 5; i++) {
-
-        for (int j = 0; j < 5; j++) {
-            if (i == 1 && j == 2) {
-                octaedro[i][j] = 5;
-            }
-
-            if (i == 2 && (j > 0 && j < 4)) {
-                octaedro[i][j] = 5;
-            }
-
-            if (i == 3 && j == 2) {
-                octaedro[i][j] = 5;
-            }
-        }
-
-    }
-
-    // imprime o octaedro
-    for (int i = 0; i < 5; i++) {
-
-        for (int j = 0; j < 5; j++) {
-            printf("%d ", octaedro[i][j]);
-        }
-
-        printf("\n");
-
-    }
-
-    printf("\n");
-    
 
     // 4. Exibição do tabuleiro do jogo
 
@@ -385,36 +358,6 @@ int main() {
         printf("Erro: Verifique o posicionamento dos navios!\n");
 
     }
-
-    
-
-
-
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
-
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
-
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
-
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
 
     return 0;
 }
