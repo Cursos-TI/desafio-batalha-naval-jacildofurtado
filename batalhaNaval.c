@@ -195,8 +195,159 @@ int main() {
 
     }
 
+    // 3. Habilidades especiais
 
-    // 3. Exibição do tabuleiro do jogo
+    // Matrizes de habilidade
+    int cone[5][5];
+    int cruz[5][5];
+    int octaedro[5][5];
+
+    // este loop inicializa todas as matrizes de habilidade com 5;
+    for (int i = 0; i < 5; i++) {
+
+        for (int j = 0; j < 5; j++) {
+            cone[i][j] = 5;
+            cruz[i][j] = 5;
+            octaedro[i][j] = 5;
+        }
+
+    }
+
+    // coodenadas das habilidades
+
+    // coordenada inicial do cone
+    int coneLinhaOrigem = 1;
+    int coneColunaOrigem = 4;
+    int habilidadePodePosicionar1 = 1;
+
+    // coordenada inicial da cruz
+    int cruzLinhaOrigem = 5;
+    int cruzColunaOrigem = 7;
+    int habilidadePodePosicionar2 = 1;
+
+    // coordenada inicial do octaedro
+    int octaedroLinhaOrigem = 7;
+    int octaedroColunaOrigem = 2;
+    int habilidadePodePosicionar3 = 1;
+
+    // verifica se o cone está dentro do limite do tabuleiro
+    if ((coneLinhaOrigem + 1 < 10 && coneLinhaOrigem - 1 >= 0) && (coneColunaOrigem + 2 < 10 && coneColunaOrigem - 2 >= 0) {
+
+        for (int i = 0; i < 5; i+=) {
+
+            for (int j = 0; j < 5; j ++) {
+                if (coneLinhaOrigem == i && coneColunaOrigem == j){
+                    tabuleiro[i][j] = cone[i][j];
+                }
+            }
+
+        }
+
+    } else {
+        printf("Habilidade de cone fora dos limites do tabuleiro!\n");
+    }
+
+    /*
+    // esse loop ilustra o cone na respectiva matriz da habilidade
+    for (int i = 0; i < 5; i++) {
+
+        for (int j = 0; j < 5; j++) {
+            if (i == 1 && j == 2) {
+                cone[i][j] = 5;
+            }
+
+            if (i == 2 && (j > 0 && j < 4)) {
+                cone[i][j] = 5;
+            }
+
+            if (i == 3 && (j >= 0 && j <= 4)) {
+                cone[i][j] = 5;
+            }
+        }
+
+    }
+
+    // imprime o cone
+    for (int i = 0; i < 5; i++) {
+
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", cone[i][j]);
+        }
+
+        printf("\n");
+
+    }
+
+    printf("\n");
+
+
+    // gera a cruz na matriz
+    for (int i = 0; i < 5; i++) {
+
+        for (int j = 0; j < 5; j++) {
+            if (i == 1 && j == 2) {
+                cruz[i][j] = 5;
+            }
+
+            if (i == 2 && (j >= 0 && j <= 4)) {
+                cruz[i][j] = 5;
+            }
+            
+            if (i == 3 && j == 2) {
+                cruz[i][j] = 5;
+            }
+        }
+
+    }
+
+
+    // imprime a cruz
+    for (int i = 0; i < 5; i++) {
+
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", cruz[i][j]);
+        }
+
+        printf("\n");
+
+    }
+
+    printf("\n");
+
+    // gera o octaedro  na matriz
+    for (int i = 0; i < 5; i++) {
+
+        for (int j = 0; j < 5; j++) {
+            if (i == 1 && j == 2) {
+                octaedro[i][j] = 5;
+            }
+
+            if (i == 2 && (j > 0 && j < 4)) {
+                octaedro[i][j] = 5;
+            }
+
+            if (i == 3 && j == 2) {
+                octaedro[i][j] = 5;
+            }
+        }
+
+    }
+
+    // imprime o octaedro
+    for (int i = 0; i < 5; i++) {
+
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", octaedro[i][j]);
+        }
+
+        printf("\n");
+
+    }
+
+    printf("\n");
+    
+
+    // 4. Exibição do tabuleiro do jogo
 
     if (podePosicionar1 == 1 && podePosicionar2 == 1 && podePosicionar3 == 1 && podePosicionar4 == 1) {
 
